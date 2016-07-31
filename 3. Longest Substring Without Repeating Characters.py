@@ -10,7 +10,7 @@ class Solution(object):
                 currWindowBegin = charToLastIndex[c] + 1
 
             ret = max(ret, i + 1 - currWindowBegin)
-            
+
             charToLastIndex[c] = i
 
         return ret
