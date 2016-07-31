@@ -23,6 +23,6 @@ class Solution(object):
 
         # we first sort by x, then by y but in reverse order
         # In this way, an increasing subsequence in y values will guarantee increasing in both x and y
-        sortedEnvelopes = sorted(envelopes, key=lambda (x,y): (x,-y))
+        sortedEnvelopes = sorted( envelopes, key=lambda coord: (coord[0],-coord[1]) )
 
         return self.longestIncreasingSubseqLength( y for x,y in sortedEnvelopes )
