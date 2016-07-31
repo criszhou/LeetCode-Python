@@ -1,6 +1,8 @@
 from collections import defaultdict
 
 class Twitter(object):
+    feedSize = 10
+
     def __init__(self):
         """
         Initialize your data structure here.
@@ -21,17 +23,21 @@ class Twitter(object):
         self.tweetRankToID[ self.nextTweetRank ] = tweetId
         self.nextTweetRank += 1
 
+        # just to save time, not absolutely necessary
+        if len(self.tweetRankMap[ userId ]) > 2 * self.feedSize:
+            self.tweetRankMap[userId] = self.tweetRankMap[ userId ][-self.feedSize:]
+
     def getNewsFeed(self, userId):
         """
         Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
         :type userId: int
         :rtype: List[int]
         """
-        allTweetRanks = self.tweetRankMap[ userId ][-10:]
+        allTweetRanks = self.tweetRankMap[ userId ][-self.feedSize:]
         for followeeId in self.followeeMap[ userId ]:
-            allTweetRanks.extend( self.tweetRankMap[ followeeId ][-10:] )
+            allTweetRanks.extend( self.tweetRankMap[ followeeId ][-self.feedSize:] )
         allTweetRanks.sort()
-        newTweetRanks = allTweetRanks[-1:-11:-1]
+        newTweetRanks = allTweetRanks[-1:-self.feedSize-1:-1]
 
         return [ self.tweetRankToID[r] for r in newTweetRanks ]
 
