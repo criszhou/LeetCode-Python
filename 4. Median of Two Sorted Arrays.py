@@ -1,5 +1,6 @@
 class Solution(object):
-    def reduceArrays(self, nums1, nums2):
+    @staticmethod
+    def reduceArrays(nums1, nums2):
         len1 = len(nums1)
         len2 = len(nums2)
 
@@ -15,7 +16,8 @@ class Solution(object):
 
         return (nums1, nums2)
 
-    def isBaseCase(self, nums1, nums2):
+    @staticmethod
+    def isBaseCase(nums1, nums2):
         assert len(nums1) <= len(nums2)
         assert len(nums2) > 0
         return len(nums1) <= 2
