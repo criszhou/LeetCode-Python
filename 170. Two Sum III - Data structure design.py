@@ -3,18 +3,14 @@ class TwoSum(object):
         """
         initialize your data structure here
         """
-        self.numSet = set()
-        self.twiceSet = set()
+        self.numCount = dict()
 
     def add(self, number):
         """
         Add the number to an internal data structure.
         :rtype: nothing
         """
-        if number in self.numSet:
-            self.twiceSet.add(number)
-
-        self.numSet.add(number)
+        self.numCount[number] = self.numCount.get(number, 0) + 1
 
     def find(self, value):
         """
@@ -22,12 +18,9 @@ class TwoSum(object):
         :type value: int
         :rtype: bool
         """
-
-        if value%2==0 and value//2 in self.twiceSet:
-            return True
-
-        for num in self.numSet:
-            if value-num!=num and value-num in self.numSet:
+        for num in self.numCount:
+            other = value - num
+            if other in self.numCount and ( other!=num or self.numCount[num]>1 ):
                 return True
 
         return False
