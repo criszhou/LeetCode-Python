@@ -21,7 +21,8 @@ class Solution(object):
         numRows = len(matrix)
         numCols = len(matrix[0])
 
-        # if k is large, we view matrix reversely i.e. upside-down and left-right reversed, also add a minus sign so we can still use a min-heap
+        # if k is large, we view matrix reversely
+        # reversely means: upside-down and left-right reversed, also add a minus sign so we can still use a min-heap
         reverse = False
         if k > numRows * numCols // 2:
             k = numRows * numCols - 1 - k
