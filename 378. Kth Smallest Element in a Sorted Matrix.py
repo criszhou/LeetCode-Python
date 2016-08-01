@@ -1,7 +1,7 @@
 class Solution(object):
     def getMatrixCell(self, matrix, row, col, reverse):
         """
-        if reverse, row and col counts
+        if reverse, row and col are from back, and also reverse signk
         """
         if reverse:
             return -matrix[-1-row][-1-col]
