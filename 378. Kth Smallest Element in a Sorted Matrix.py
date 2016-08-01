@@ -28,9 +28,10 @@ class Solution(object):
             k = numRows * numCols - 1 - k
             reverse = True
 
-        seenCells = {(0, 0)}  # item has format (i,j), meaning matrix[i][j] is seen
-        heap = [
-            (self.getMatrixCell(matrix, 0, 0, reverse=reverse), 0, 0)]  # each heap item is a 3-tuple, (num, row, col)
+        # item in seenCells has format (i,j), meaning matrix[i][j] is seen
+        seenCells = {(0, 0)}
+        # each heap item is a 3-tuple, (num, row, col)
+        heap = [ (self.getMatrixCell(matrix, 0, 0, reverse=reverse), 0, 0) ]
 
         # Start heap-sort
         for it in range(k + 1):
